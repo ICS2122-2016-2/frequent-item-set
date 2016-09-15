@@ -1,5 +1,6 @@
 import os
 import json
+import csv
 
 __author__ = "rpalmaotero"
 
@@ -8,7 +9,7 @@ N_POSITIONS = 12750
 N_FREQ_ITEMS_SET = 60
 MAX_FREQ_ITEMS_SET_LENGTH = N_POSITIONS // N_FREQ_ITEMS_SET
 DB_PATH = os.path.join(os.path.dirname(__file__), "./cleaned_db.dat")
-OUTPUT_FILENAME = "families.json"
+OUTPUT_FILENAME = "families"
 
 
 class FrequentItemsSets:
@@ -91,8 +92,13 @@ class FrequentItemsSets:
             lambda family: [family[0]] + family[1],
             self.families.items()
         ))
-        with open(OUTPUT_FILENAME, "w") as output_file:
+
+        with open("{}.json".format(OUTPUT_FILENAME), "w") as output_file:
             json.dump(families, output_file)
+
+        with open("{}.csv".format(OUTPUT_FILENAME), "w") as output_file:
+            writer = csv.writer(output_file)
+            writer.writerows(families)
 
 
 if __name__ == "__main__":
