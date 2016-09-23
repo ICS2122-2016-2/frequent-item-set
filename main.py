@@ -27,6 +27,7 @@ class Family(list):
     def full(self):
         return self.MAX_LENGTH - 1 <= len(self)
 
+
 class FrequentItemsSets:
     def __init__(self):
         self.affinities = {}
@@ -80,7 +81,7 @@ class FrequentItemsSets:
             self.families[top_product] = family
             del self.affinities[top_product]
 
-    #TODO: fijarnos en sku a sku? fijarnos directamente en afinidad de tops?
+    # TODO: fijarnos en sku a sku? fijarnos directamente en afinidad de tops?
     def assign_products_to_families(self):
         left_alone = []
         for sku, record in self.affinities.items():
@@ -122,7 +123,6 @@ class FrequentItemsSets:
                 print(record)
                 print("\n", end="")
 
-
         print("INFO: {} SKUs left alone...".format(left_alone))
 
         random.shuffle(left_alone)
@@ -140,8 +140,6 @@ class FrequentItemsSets:
                 family.MAX_LENGTH,
                 len(family) + 1
             ))
-
-
 
     def output_families(self):
         families = list(map(
